@@ -54,7 +54,7 @@ module larry() {
 	}
 }
 
-rotate_extrude() rotate([90,0,0]) difference() {
+linear_extrude(10) difference() {
 minkowski() {
 	circle(r=3,center=true);
 	larry();
