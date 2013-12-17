@@ -9,5 +9,5 @@ rotate([0, 0, $t*45]) render(convexity=2) difference() {
 			circle(r=46,center=true);
 		}
 	}
-	cylinder(h=5,r=4,$fn=50);
+	cylinder(h=8,r=2,$fn=50);
 }
