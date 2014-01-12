@@ -3,7 +3,7 @@ goldenratio = 1.61803399;
 
 gThickness = 1/4 * 25.4;
 gRoundingRadius = 1/2/2*25.4;
-gPlasticThickness = 1/8 * 25.4;
+gPlasticThickness = 1/16 * 25.4;
 
 gStandardWidth = 2.75*25.4;
 g1GangWidth = 2.75*25.4;
@@ -229,7 +229,7 @@ module Toggle_Slider()
 			translate([edge + toggleseparation, 0, 0])
 				RGBSliders();
 		}
-		translate([0,0,gPlasticThickness-gThickness]) Slider_shadow();
+		translate([0,0,-gThickness+gPlasticThickness*2]) Slider_shadow();
 	}
 }
 
@@ -249,11 +249,11 @@ module Slider_shadow()
 {
 	difference() {
 		minkowski() {
-			linear_extrude(1) projection(cut=true)
+			linear_extrude(gThickness-gPlasticThickness*2) projection(cut=true)
 				Slider_switch();
 			translate([-.75,-.75,0]) cube(1.5);
 		}
-		linear_extrude(2.5) projection(cut=true)
+		linear_extrude((gThickness-gPlasticThickness)*2) projection(cut=true)
 			Slider_switch();
 	}
 }
