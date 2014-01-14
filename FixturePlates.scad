@@ -20,7 +20,7 @@ gLightSwitchHeight = 0.942*25.4;		// The height of a light switch
 gLightSwitchWidth = 0.406 * 25.4;		// The width of a light switch
 
 gFullHoleDistance = (3 + 9/32) * 25.4;
-gSliderWidth = 30;
+gSliderWidth = 32;
 gSliderTrackWidth = 4;
 gSliderHoleWidth = 41;
 gTotalSliderHeight = .75 * 25.4;
@@ -132,7 +132,7 @@ module miniinsetscrew()
 	cylinder(r=gMiniHoleIR, h=gPlasticThickness*2+2*joinfactor, $fn = 12);
 
 	translate([0,0, 2*joinfactor])
-	cylinder(r=gMiniHoleOR, h=gPlasticThickness*2+2*joinfactor, $fn = 12);
+	cylinder(r=gMiniHoleOR, h=gPlasticThickness*2, $fn = 12);
 }
 
 //==============================================
@@ -252,7 +252,7 @@ module Slider_shadow()
 		minkowski() {
 			linear_extrude(gPlasticThickness) projection(cut=true)
 				Slider_switch();
-			translate([-.75,-.75,0]) cube(1.5);
+			translate([-1.5,-1.5,0]) cube([3,3,1]);
 		}
 		linear_extrude((gThickness-gPlasticThickness)*2) projection(cut=true)
 			Slider_switch();
