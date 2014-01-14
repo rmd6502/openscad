@@ -13,8 +13,8 @@ gStandardHeight = 4.5 * 25.4;
 gFixtureHoleDistance = 2.375*25.4;		// The separation between holes when a fixture is being covered
 gFixtureHoleIR =5/32/2*25.4;
 gFixtureHoleOR = 6.75/2;
-gMiniHoleIR = 1;
-gMiniHoleOR = 2.5;
+gMiniHoleIR = 1.5;
+gMiniHoleOR = 3;
 
 gLightSwitchHeight = 0.942*25.4;		// The height of a light switch
 gLightSwitchWidth = 0.406 * 25.4;		// The width of a light switch
@@ -44,6 +44,7 @@ rotate([180,0,0])
 
 //Toggle_Duplex_Standard();
 
+//miniinsetscrew();
 //RGBSliders();
 Toggle_Slider();
 //Slider_shadow();
@@ -127,11 +128,11 @@ module insetscrew()
 // A screw with a tapered head.  Used to subtract screw holes from the plate
 module miniinsetscrew()
 {
-	translate([0, 0, 0])
-	cylinder(r=gMiniHoleIR, h=gThickness+2*joinfactor, center=true, $fn = 12);
+	translate([0, 0, -gPlasticThickness*2])
+	cylinder(r=gMiniHoleIR, h=gPlasticThickness*2+2*joinfactor, $fn = 12);
 
-	translate([0,0, 0])
-	cylinder(r1=gMiniHoleIR, r2=gMiniHoleOR, h=gThickness/2+joinfactor, $fn = 12);
+	translate([0,0, 2*joinfactor])
+	cylinder(r=gMiniHoleOR, h=gPlasticThickness*2+2*joinfactor, $fn = 12);
 }
 
 //==============================================
@@ -229,7 +230,7 @@ module Toggle_Slider()
 			translate([edge + toggleseparation, 0, 0])
 				RGBSliders();
 		}
-		translate([0,0,-gThickness+gPlasticThickness*2]) Slider_shadow();
+		translate([0,0,-gPlasticThickness]) Slider_shadow();
 	}
 }
 
@@ -249,7 +250,7 @@ module Slider_shadow()
 {
 	difference() {
 		minkowski() {
-			linear_extrude(gThickness-gPlasticThickness*2) projection(cut=true)
+			linear_extrude(gPlasticThickness) projection(cut=true)
 				Slider_switch();
 			translate([-.75,-.75,0]) cube(1.5);
 		}
