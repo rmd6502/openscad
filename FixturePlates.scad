@@ -252,7 +252,7 @@ module Slider_shadow()
 		minkowski() {
 			linear_extrude(gPlasticThickness) projection(cut=true)
 				Slider_switch();
-			translate([-1.5,-1.5,0]) cube([3,3,1]);
+			translate([-3,-3,0]) cube([6,6,1]);
 		}
 		linear_extrude((gThickness-gPlasticThickness)*2) projection(cut=true)
 			Slider_switch();
