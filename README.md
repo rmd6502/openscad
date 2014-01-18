@@ -6,9 +6,9 @@ openSCAD designs I'm playing with.  Not guaranteed to work.
 There are enough files here that I ought to make some sort of manifest/index to them, so here goes:
 
 <dl>
-<dt>heart\_board.scad</dt>
-<dt>inner\_heart.dxf</dt>
-<dt>outer\_heart.dxf</dt>
+<dt>heart_board.scad</dt>
+<dt>inner_heart.dxf</dt>
+<dt>outer_heart.dxf</dt>
 <dd>This is a case designed to fit around the circuit described [here](https://github.com/rmd6502/charlie_heart).  Print 2, 
 they should be symmetric enough to snap together.  I will create an Instructable in time for Valentine's Day.</dd>
 
@@ -23,7 +23,7 @@ slide pots with 30mm travel, connected to a [Spark Core](http://spark.io), which
 <dd>An openscad design that makes surprisingly workable propellers.  Ultimately I'll design a fully 3d printable quadcopter,
 but for now I put them loosely on the shaft of a motor and fling them at people.</dd>
 
-<dt>larry\*.scad</dt>
-<dd>The [Twitter](http://twitter.com) bird in various formats.  Follow me at @rmd6502 !  Just send me a quick message that
+<dt>larry*.scad</dt>
+<dd>The [Twitter](http://twitter.com) bird in various formats.  Follow me at [@rmd6502](http://twitter.com/rmd6502)!  Just send me a quick message that
 you're human, I'm plagued by bots and may block you unintentionally.</dd>
 </dl>
