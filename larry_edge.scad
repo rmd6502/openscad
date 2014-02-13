@@ -54,10 +54,24 @@ module larry() {
 	}
 }
 
-linear_extrude(15) difference() {
-	minkowski() {
-		circle(r=3,center=true);
-		larry();
+module part1() 
+{
+	render() projection() minkowski() {
+		cylinder(r=3,h=1);
+		linear_extrude(1) difference() {
+			minkowski() {
+				circle(r=1,center=true);
+ 				resize([45,0,0],auto=true) larry();
+			}
+			resize([45,0,0],auto=true) larry();
+		}
 	}
-	larry();
+}
+
+linear_extrude(4) intersection() {
+	minkowski() {
+		circle(r=1,center=true);
+ 		resize([45,0,0],auto=true) larry();
+	}
+	part1();
 }
