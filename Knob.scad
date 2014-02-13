@@ -72,8 +72,8 @@ module knob()
 		//shaft
 		cylinder(r=6, h=shaftLength);
 		difference() {
-			cylinder(r=6/2,h=18);
-			translate([4.5-6/2,-4,20-shaftLength])cube([4,8,8+shaftLength]);
+			cylinder(r=3.25,h=18);
+			translate([4.75-6/2,-4,20-shaftLength])cube([4,8,8+shaftLength]);
 		}
 		// slot for magnet
 		//cube([2,8,10],center=true);
