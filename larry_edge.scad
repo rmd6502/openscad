@@ -56,9 +56,9 @@ module larry() {
 
 module part1() 
 {
-	render() projection() minkowski() {
+	render() projection(cut=true) minkowski() {
 		cylinder(r=3,h=1);
-		linear_extrude(1) difference() {
+		linear_extrude(1) difference() 
 			minkowski() {
 				circle(r=1,center=true);
  				resize([45,0,0],auto=true) larry();
@@ -68,10 +68,13 @@ module part1()
 	}
 }
 
-linear_extrude(4) intersection() {
-	minkowski() {
-		circle(r=1,center=true);
- 		resize([45,0,0],auto=true) larry();
+minkowski() {
+	linear_extrude(3) difference() {
+		minkowski() {
+			circle(r=1,center=true);
+			resize([45,0,0],auto=true) larry();
+		}
+		resize([45,0,0],auto=true) larry();
 	}
-	part1();
+	sphere(1);
 }
