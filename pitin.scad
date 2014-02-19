@@ -6,9 +6,9 @@ beaglebone_height = 51.843;
 case_height = 25;
 
 union() {
-	render() difference() {
+	difference() {
 		union() {
-			difference() {
+			render(2) difference() {
 				cylinder(r=60,h=case_height);
 				translate([0,0,1]) cylinder(r=59,h=case_height-1);
 			}
