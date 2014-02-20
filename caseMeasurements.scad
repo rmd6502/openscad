@@ -1,0 +1,9 @@
+$fn=100;
+inch = 25.4;
+caseHeight = 25;
+caseDiameter = 100;
+caseThickness = .75;
+screwR = 1.5;
+supportHeight = 5.5;
+boardOffsetLength = 0.05 * inch;
+boardOffsetWidth = .5;
