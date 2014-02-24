@@ -11,7 +11,7 @@ union() {
 		cylinder(r=outerRadius, h=width,$fn=50);
 		cylinder(r=innerRadius, h=width,$fn=50);
 	
-		translate([-outerRadius/2,-outerRadius+18,2.5]) rotate([90,0,0]) linear_extrude(20) resize([outerRadius,0,0],auto-true) import("Jeanette.dxf");
+		translate([-outerRadius/2,-outerRadius+18,2.5]) rotate([90,0,0]) linear_extrude(20) resize([outerRadius,0,0],auto=true) import("Jeanette.dxf");
 	}
 	difference() {
 		cylinder(r=innerRadius, h=width,$fn=50);
