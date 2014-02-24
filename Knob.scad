@@ -92,7 +92,7 @@ module encoder()
   difference()
     {
     //shaft
-    cylinder(r=6/2,h=20); // Travel measured 0.35mm (data sheet says 0.2 to 0.9)
+    cylinder(r=6/2+1.25,h=20); // Travel measured 0.35mm (data sheet says 0.2 to 0.9)
     //cutout flat
     translate([4.5-6/2,-4,13])cube([4,8,8]);
     }
