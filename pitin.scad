@@ -20,12 +20,12 @@ difference() {
 				rotate_extrude()translate([diameter/2,.75,0])square(2,center=true);
 				rotate_extrude()translate([diameter/2-1.5,1.5,0])circle(r=1.5);
 			}
-			rotate([0,0,50]) translate([diameter/2-10,0,thickness]) mountingScrew();
-			rotate([0,0,120]) translate([diameter/2-10,0,thickness]) mountingScrew();
-			rotate([0,0,230]) translate([diameter/2-10,0,thickness]) mountingScrew();
-			rotate([0,0,300]) translate([diameter/2-10,0,thickness]) mountingScrew();
+			rotate([0,0,50]) translate([diameter/2-6,0,thickness]) mountingScrewMinus();
+			rotate([0,0,120]) translate([diameter/2-10,0,thickness]) mountingScrewMinus();
+			rotate([0,0,230]) translate([diameter/2-10,0,thickness]) mountingScrewMinus();
+			rotate([0,0,300]) translate([diameter/2-10,0,thickness]) mountingScrewMinus();
 		}
-		rotate([0,0,50]) translate([diameter/2-10,0,thickness]) mountingScrew();
+		rotate([0,0,50]) translate([diameter/2-6,0,thickness]) mountingScrew();
 		rotate([0,0,120]) translate([diameter/2-10,0,thickness]) mountingScrew();
 		rotate([0,0,230]) translate([diameter/2-10,0,thickness]) mountingScrew();
 		rotate([0,0,300]) translate([diameter/2-10,0,thickness]) mountingScrew();
@@ -47,7 +47,12 @@ module mountingScrew()
 {
 	render(2) difference() {
 		cylinder(d=mountingScrewDiameter1+2,h=mountingScrewHeight);
-		translate([0,0,mountingScrewHeight-2]) cylinder(r1=mountingScrewDiameter2/2,r2=mountingScrewDiameter1/2,h=2);
-		translate([0,0,-1-thickness]) cylinder(r=mountingScrewDiameter2/2,h=thickness+2);
+		mountingScrewMinus();
 	}
+}
+
+module mountingScrewMinus()
+{
+	translate([0,0,mountingScrewHeight-2]) cylinder(r1=mountingScrewDiameter2/2,r2=mountingScrewDiameter1/2,h=2);
+	translate([0,0,-1-thickness]) cylinder(r=mountingScrewDiameter2/2,h=thickness+2);
 }
