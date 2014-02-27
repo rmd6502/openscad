@@ -1,7 +1,7 @@
 include <R-pi.scad>
 
 diameter=sqrt(length * length + width * width) + 5;
-thickness=.75;
+thickness=1.5;
 caseHeight=25;
 standoffHeight = 6;
 standoffDiameter=5;
@@ -14,8 +14,8 @@ $fn=100;
 difference() {
 	union() {
 		render(2) difference() {
-			cylinder(d=diameter,h=caseHeight);
-			translate([0,0,thickness]) cylinder(d=diameter-thickness*2,h=caseHeight-thickness);
+			cylinder(d=diameter,h=caseHeight+thickness);
+			translate([0,0,thickness]) cylinder(d=diameter-thickness*2,h=caseHeight);
 			difference() {
 				rotate_extrude()translate([diameter/2,.75,0])square(2,center=true);
 				rotate_extrude()translate([diameter/2-1.5,1.5,0])circle(r=1.5);
