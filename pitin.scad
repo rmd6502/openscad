@@ -2,7 +2,7 @@ include <R-pi.scad>
 
 diameter=sqrt(length * length + width * width) + 5;
 thickness=1.5;
-caseHeight=25;
+caseHeight=27;
 standoffHeight = 6;
 standoffDiameter=5;
 standoffScrewDiameter=3;
@@ -11,7 +11,7 @@ mountingScrewDiameter2=3;
 mountingScrewHeight=3;
 $fn=100;
 
-difference() {
+rotate([0, 0, $t*360]) difference() {
 	union() {
 		render(2) difference() {
 			cylinder(d=diameter,h=caseHeight+thickness);
@@ -32,7 +32,7 @@ difference() {
 		translate ([25.5-length/2, 18-width/2,thickness-0.1]) standoff();
 		translate ([length-5-length/2, width-12.5-width/2, thickness-0.1]) standoff();
 	}
-	#translate([-length/2,-width/2,standoffHeight+thickness]) pi("B");
+	translate([-length/2,-width/2,standoffHeight+thickness]) pi("B");
 }
 
 module standoff() 
