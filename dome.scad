@@ -8,7 +8,7 @@ switchtravel=.012 * 25.4;
 meltage=.25;
 ridge=5;
 
-innerdiam = sphereRadius*2 + ridge - meltage + thickness;
+innerdiam = (sphereRadius + ridge - meltage)*2-thickness;
 union() {
 	difference() {
 		sphere(r=sphereRadius);
@@ -21,12 +21,12 @@ union() {
 	}
 
 	difference() {
-		linear_extrude(thickness*2) difference() {
-			circle(sphereRadius+ridge);
+		linear_extrude(thickness*3) difference() {
+			circle(sphereRadius+ridge-thickness);
 			circle(sphereRadius-thickness-meltage);
 		}
 		for (angle=[0:120:359]) difference() {
-			rotate(angle) translate([(innerdiam-4.5)/2,0,0-.5]) cylinder(d=5,h=switchtotalheight+thickness);
+		rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=ridge+thickness,h=switchtotalheight+thickness);
 		}
 	}
 }
