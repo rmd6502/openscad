@@ -56,7 +56,11 @@ module dome() {
 
 module switch() {
 	union() {
-		translate([-switchlenwid/2,-switchlenwid/2,0]) cube([switchlenwid,switchlenwid,switchbaseheight]);
+		translate([-switchlenwid/2 -meltage,-switchlenwid/2-meltage,0]) cube([switchlenwid+meltage*2,switchlenwid+meltage*2,switchbaseheight]);
+		translate([-switchlenwid/2 -meltage-2.2,-switchlenwid/2-meltage+.9,0]) cube([2.2,.9,1]);
+		translate([-switchlenwid/2 -meltage-2.2,switchlenwid/2-meltage-.9,0]) cube([2.2,.9,1]);
+		translate([switchlenwid/2 +meltage,-switchlenwid/2-meltage+.9,0]) cube([2.2,.9,1]);
+		translate([switchlenwid/2 +meltage,switchlenwid/2-meltage-.9,0]) cube([2.2,.9,1]);
 		cylinder(d=switchbuttondiameter, h=switchtotalheight);
 	}
 }
@@ -75,3 +79,4 @@ module bottom() {
 //translate([0,0,thickness*5]) dome();
 //translate([0,0,switchtotalheight+thickness*4]) rotate([180,0,0])  
 bottom();
+//switch();
