@@ -1,5 +1,5 @@
 $fn=100;
-sphereRadius=45;
+sphereRadius=35;
 thickness=1;
 switchbaseheight=3.61;
 switchtotalheight=9.5;
@@ -8,21 +8,31 @@ switchtravel=.012 * 25.4;
 switchlenwid=5.99;
 meltage=.25;
 ridge=5;
+chamfer_radius =.5;
 
 outerdiam = (sphereRadius + ridge  + meltage)*2;
 innerdiam = (sphereRadius + ridge - meltage)*2-thickness;
 
 module base() {
 	render(2) union() {
+		translate([0,0,thickness*2]) difference() {
+			cylinder(d=outerdiam,h=switchtotalheight);
+			cylinder(d=innerdiam,h=switchtotalheight);
+			rotate([0,0,90])translate([innerdiam/2-thickness,0,switchtotalheight-thickness*2]) rotate([0,90,0]) cylinder(d=thickness*2,h=3);
+		}
+
 		difference() {
-			cylinder(d=outerdiam,h=switchtotalheight+thickness*2);
-			cylinder(d=innerdiam,h=switchtotalheight+thickness*2);
-			rotate([0,0,90])translate([innerdiam/2-thickness,0,switchtotalheight]) rotate([0,90,0]) cylinder(d=thickness*2,h=3);
+			linear_extrude(thickness*2) difference() {
+				circle(outerdiam/2);
+				circle(sphereRadius+meltage);
+			}
+			// chamfer
+			rotate_extrude() translate([outerdiam/2-chamfer_radius*2, 0, switchtotalheight+thickness*2-chamfer_radius*2]) difference() {
+				square(chamfer_radius*2);
+				translate([0,chamfer_radius*2]) circle(chamfer_radius*2);
+			}
 		}
-		linear_extrude(thickness*2) difference() {
-			circle(outerdiam/2);
-			circle(sphereRadius+meltage);
-		}
+		
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness]) cylinder(d=5,h=switchtotalheight+thickness);
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness*2]) cylinder(d=3,h=switchtotalheight);
@@ -73,5 +83,5 @@ module bottom() {
 
 //base();
 //translate([0,0,thickness*5]) dome();
-//translate([0,0,switchtotalheight+thickness*4]) rotate([180,0,0])  
-bottom();
+//translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
+	bottom();
