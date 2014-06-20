@@ -1,4 +1,4 @@
-$fn=100;
+$fn=80;
 sphereRadius=35;
 thickness=1;
 switchbaseheight=3.61;
@@ -7,7 +7,7 @@ switchbuttondiameter=3.51;
 switchtravel=.012 * 25.4;
 switchlenwid=5.99;
 meltage=.25;
-ridge=5;
+ridge=6;
 chamfer_radius =.5;
 
 outerdiam = (sphereRadius + ridge  + meltage)*2;
@@ -15,13 +15,13 @@ innerdiam = (sphereRadius + ridge - meltage)*2-thickness;
 
 module base() {
 	union() {
-		difference() {
-			cylinder(d=outerdiam,h=switchtotalheight+thickness*2);
-			cylinder(d=innerdiam,h=switchtotalheight+thickness*2);
+		render(2) difference() {
+			translate([0,0,thickness]) cylinder(d=outerdiam,h=switchtotalheight+thickness);
+			translate([0,0,thickness]) cylinder(d=innerdiam,h=switchtotalheight+thickness);
 			rotate([0,0,90])translate([innerdiam/2-thickness,0,switchtotalheight]) rotate([0,90,0]) cylinder(d=thickness*2,h=3);
 		}
 
-		difference() {
+		render(2) difference() {
 			linear_extrude(thickness*2) difference() {
 				circle(outerdiam/2);
 				circle(sphereRadius+meltage);
@@ -33,15 +33,15 @@ module base() {
 			}
 		}
 		
-		for (angle=[0:120:359]) difference() {
-			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness]) cylinder(d=5,h=switchtotalheight+thickness);
-			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness*2]) cylinder(d=3,h=switchtotalheight);
+		render(2) for (angle=[0:120:359]) difference() {
+			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness]) cylinder(d=5.5,h=switchtotalheight+thickness);
+			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness*2]) cylinder(d=4,h=switchtotalheight);
 		}
 	}
 }
 
 module dome() {
-	union() {
+	render(2) union() {
 		difference() {
 			sphere(r=sphereRadius);
 			sphere(r=sphereRadius-thickness);
@@ -58,7 +58,7 @@ module dome() {
 				circle(sphereRadius-thickness-meltage);
 			}
 			for (angle=[0:120:359]) difference() {
-			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=ridge+thickness,h=switchtotalheight+thickness);
+			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=ridge+thickness*2,h=switchtotalheight+thickness);
 			}
 		}
 	}
@@ -76,20 +76,20 @@ module switch() {
 }
 
 module bottom() {
-	difference() {
+	render(2) difference() {
 		cylinder(d=outerdiam, h=thickness*2);
 		for (angle=[0:120:359]) difference() {
-			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=3,h=switchtotalheight);
+			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=4,h=switchtotalheight);
 		}
 		#rotate([0,0,90])translate([0,0,thickness]) switch();
 		translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
-		translate([-innerdiam/2+25,innerdiam/2-25,thickness]) linear_extrude(thickness) text(t="© 2014 Robert ◊",size=5,font="LiberationSans");
-		translate([-innerdiam/2+20,innerdiam/2-35,thickness]) linear_extrude(thickness) text(t="All Rights Reserved",size=5,font="LiberationSans");
+		translate([-innerdiam/2+18,innerdiam/2-18,thickness]) linear_extrude(thickness) text($fn=40, t="© 2014 Robert ◊",size=4,font="LiberationSans");
+		translate([-innerdiam/2+15,innerdiam/2-25,thickness]) linear_extrude(thickness) text($fn=40, t="All Rights Reserved",size=4,font="LiberationSans");
 	}
 }
 
-//base();
-//translate([0,0,thickness*5]) dome();
-//translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
+base();
+//#translate([0,0,thickness*5]) dome();
+translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
 	bottom();
 //switch();
