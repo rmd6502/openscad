@@ -57,10 +57,10 @@ module dome() {
 module switch() {
 	union() {
 		translate([-switchlenwid/2 -meltage,-switchlenwid/2-meltage,0]) cube([switchlenwid+meltage*2,switchlenwid+meltage*2,switchbaseheight]);
-		translate([-switchlenwid/2 -meltage-2.2,-switchlenwid/2-meltage+.9,0]) cube([2.2,.9,1]);
-		translate([-switchlenwid/2 -meltage-2.2,switchlenwid/2-meltage-.9,0]) cube([2.2,.9,1]);
-		translate([switchlenwid/2 +meltage,-switchlenwid/2-meltage+.9,0]) cube([2.2,.9,1]);
-		translate([switchlenwid/2 +meltage,switchlenwid/2-meltage-.9,0]) cube([2.2,.9,1]);
+		translate([-switchlenwid/2 -meltage-2.2,-switchlenwid/2-meltage+1.1,0]) cube([2.2,1.1,1]);
+		translate([-switchlenwid/2 -meltage-2.2,switchlenwid/2-meltage-1.1,0]) cube([2.2,1.1,1]);
+		translate([switchlenwid/2 +meltage,-switchlenwid/2-meltage+1.1,0]) cube([2.2,1.1,1]);
+		translate([switchlenwid/2 +meltage,switchlenwid/2-meltage-1.1,0]) cube([2.2,1.1,1]);
 		cylinder(d=switchbuttondiameter, h=switchtotalheight);
 	}
 }
@@ -71,7 +71,8 @@ module bottom() {
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=3,h=switchtotalheight);
 		}
-		translate([0,0,thickness]) switch();
+		#rotate([0,0,90])translate([0,0,thickness]) switch();
+		#translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
 	}
 }
 
