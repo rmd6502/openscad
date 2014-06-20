@@ -37,7 +37,7 @@ module ethernet ()
 		//ethernet port
 		color("silver") cube([21.2,16,13.3]);
 		// extend out
-		color(clearanceColor) translate([21.2,0,0]) cube([clearanceLength,16,13.1]);
+		color(clearanceColor) translate([21.2,-1,-1]) cube([clearanceLength,18,15.1]);
 		}
 	}
 
@@ -54,7 +54,7 @@ module usb ()
 		{
 		//Double usb port
 		color("silver") cube([17.3,13.3,16]);
-		color(clearanceColor) translate([17.3,0,0]) cube([clearanceLength,13.3,16]);
+		color(clearanceColor) translate([17.3,-1,-1]) cube([clearanceLength,15.3,18]);
 		}
 	}
 
@@ -68,7 +68,7 @@ module composite ()
 		rotate([90,0,0])
 		color("silver")
 		cylinder(h = 9, r = 4.15);
-		color(clearanceColor) translate([5,49,8]) rotate([90,0,0]) cylinder(h=clearanceLength, r=4.15);
+		color(clearanceColor) translate([5,49,8]) rotate([90,0,0]) cylinder(h=clearanceLength, r=6.15);
 		}
 	}
 
@@ -83,7 +83,7 @@ module audio ()
 		rotate([-90,0,0])
 		color("silver")
 		cylinder(h = 3.5, r = 4.15);
-		color(clearanceColor) translate([6,15,8]) rotate([-90,0,0]) cylinder(h=clearanceLength,r=4.15);
+		color(clearanceColor) translate([6,15,8]) rotate([-90,0,0]) cylinder(h=clearanceLength,r=6.15);
 		}
 	}
 
@@ -99,7 +99,7 @@ module hdmi ()
 	{
 	translate ([37.1,-1,height]) {
 		color ("yellow") cube([15.1,11.7,8-height]);
-		color(clearanceColor) translate([0,-clearanceLength,0]) cube([15.1, clearanceLength,8-height]);
+		color(clearanceColor) translate([-1,-clearanceLength,-1]) cube([17.1, clearanceLength,10-height]);
 	}
 	}
 
@@ -107,7 +107,7 @@ module power ()
 	{
 	translate ([-0.8,3.8,height]) {
 		cube ([5.6, 8,4.4-height]);
-		color(clearanceColor) translate([-clearanceLength,0,0]) cube([clearanceLength,8,4.4-height]);
+		color(clearanceColor) translate([-clearanceLength,-1,-1]) cube([clearanceLength,10,6.4-height]);
 	}
 	}
 
@@ -117,8 +117,8 @@ module sd ()
 	translate ([0.9, 15.2,-5.2+height])
 	cube ([16.8, 28.5, 5.2-height]);
 	color ([.2,.2,.7])
-	translate ([-17.3,17.7,-2.9])
-	cube ([32, 24, 2] );
+	translate ([-17.3,16.7,-3.9])
+	cube ([32, 25, 3] );
 	}
 
 module csicamera ()
