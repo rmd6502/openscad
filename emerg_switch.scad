@@ -13,7 +13,7 @@ outerdiam = (sphereRadius + ridge  + meltage)*2;
 innerdiam = (sphereRadius + ridge - meltage)*2-thickness;
 
 module base() {
-	render(2) union() {
+	union() {
 		difference() {
 			cylinder(d=outerdiam,h=switchtotalheight+thickness*2);
 			cylinder(d=innerdiam,h=switchtotalheight+thickness*2);
@@ -66,13 +66,15 @@ module switch() {
 }
 
 module bottom() {
-	render(2) difference() {
+	difference() {
 		cylinder(d=outerdiam, h=thickness*2);
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=3,h=switchtotalheight);
 		}
 		#rotate([0,0,90])translate([0,0,thickness]) switch();
-		#translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
+		translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
+		translate([-innerdiam/2+25,innerdiam/2-25,thickness]) linear_extrude(thickness) text(t="© 2014 Robert ◊",size=5,font="LiberationSans");
+		translate([-innerdiam/2+20,innerdiam/2-35,thickness]) linear_extrude(thickness) text(t="All Rights Reserved",size=5,font="LiberationSans");
 	}
 }
 
