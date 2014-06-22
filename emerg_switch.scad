@@ -8,20 +8,20 @@ switchtravel=.012 * 25.4;
 switchlenwid=5.99;
 meltage=.25;
 ridge=6;
-chamfer_radius =.5;
+chamfer_radius =.75;
 
 outerdiam = (sphereRadius + ridge  + meltage)*2;
 innerdiam = (sphereRadius + ridge - meltage)*2-thickness;
 
 module base() {
 	union() {
-		render(2) difference() {
+		 difference() {
 			translate([0,0,thickness]) cylinder(d=outerdiam,h=switchtotalheight+thickness);
 			translate([0,0,thickness]) cylinder(d=innerdiam,h=switchtotalheight+thickness);
 			rotate([0,0,90])translate([innerdiam/2-thickness,0,switchtotalheight]) rotate([0,90,0]) cylinder(d=thickness*2,h=3);
 		}
 
-		render(2) difference() {
+		difference() {
 			linear_extrude(thickness*2) difference() {
 				circle(outerdiam/2);
 				circle(sphereRadius+meltage);
@@ -41,7 +41,7 @@ module base() {
 }
 
 module dome() {
-	render(2) union() {
+	union() {
 		difference() {
 			sphere(r=sphereRadius);
 			sphere(r=sphereRadius-thickness);
