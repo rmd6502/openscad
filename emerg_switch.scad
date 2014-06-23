@@ -9,6 +9,8 @@ switchlenwid=5.99;
 meltage=.25;
 ridge=6;
 chamfer_radius =.75;
+domeText="STOP";
+domeLength = len(domeText);
 
 outerdiam = (sphereRadius + ridge  + meltage)*2;
 innerdiam = (sphereRadius + ridge - meltage)*2-thickness;
@@ -46,15 +48,18 @@ module dome() {
 			sphere(r=sphereRadius);
 			sphere(r=sphereRadius-thickness);
 			translate([-sphereRadius,-sphereRadius,0]) cube([2*sphereRadius,2*sphereRadius,sphereRadius]);
+			for (idx = [0:domeLength]) {
+				rotate([-4,210-idx*65/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness+meltage) text(t=domeText[idx],font="LiberationSans",size=10);
+			}
 		}
 		difference() {
-			translate([0,0,-sphereRadius+.5]) cylinder(d=switchbuttondiameter+thickness+meltage,h=sphereRadius-.5);
+			translate([0,0,-sphereRadius+.5]) cylinder(d=switchbuttondiameter+thickness*3+meltage,h=sphereRadius-.5);
 			cylinder(d=switchbuttondiameter+meltage,h=switchtravel/2+meltage);
 		}
 	
 		difference() {
 			linear_extrude(thickness*2) difference() {
-				circle(sphereRadius+ridge-thickness);
+				circle(sphereRadius+ridge-thickness-meltage*2);
 				circle(sphereRadius-thickness-meltage);
 			}
 			for (angle=[0:120:359]) difference() {
@@ -88,8 +93,8 @@ module bottom() {
 	}
 }
 
-base();
-//#translate([0,0,thickness*5]) dome();
-translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
-	bottom();
+//base();
+translate([0,0,thickness*5]) dome();
+//translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
+	//bottom();
 //switch();
