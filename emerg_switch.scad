@@ -41,15 +41,15 @@ module base() {
 }
 
 module dome() {
-	union() {
+	translate([0,0,-thickness*2]) union() {
 		difference() {
 			sphere(r=sphereRadius);
 			sphere(r=sphereRadius-thickness);
 			translate([-sphereRadius,-sphereRadius,0]) cube([2*sphereRadius,2*sphereRadius,sphereRadius]);
 		}
 		difference() {
-			translate([0,0,-sphereRadius+.5]) cylinder(d=switchbuttondiameter+thickness+meltage,h=sphereRadius-.5);
-			cylinder(d=switchbuttondiameter+meltage,h=switchtravel/2+meltage);
+			translate([0,0,-sphereRadius+thickness/2]) cylinder(d=switchbuttondiameter+thickness+meltage,h=sphereRadius+thickness*2-meltage*2);
+			translate([0,0,thickness*2-switchtravel-meltage/2]) cylinder(d=switchbuttondiameter+meltage,h=switchtravel+meltage);
 		}
 	
 		difference() {
@@ -88,8 +88,8 @@ module bottom() {
 	}
 }
 
-base();
-//#translate([0,0,thickness*5]) dome();
-translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
-	bottom();
+//base();
+/* translate([0,0,thickness*5]) */dome();
+//translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
+	//bottom();
 //switch();
