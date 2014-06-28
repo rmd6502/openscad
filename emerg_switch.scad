@@ -9,6 +9,8 @@ switchlenwid=5.99;
 meltage=.25;
 ridge=6;
 chamfer_radius =.75;
+domeText="STOP";
+domeLength = len(domeText);
 
 outerdiam = (sphereRadius + ridge  + meltage)*2;
 innerdiam = (sphereRadius + ridge - meltage)*2-thickness;
@@ -54,13 +56,17 @@ module dome() {
 	
 		difference() {
 			linear_extrude(thickness*2) difference() {
-				circle(sphereRadius+ridge-thickness);
+				circle(sphereRadius+ridge-thickness-meltage*2);
 				circle(sphereRadius-thickness-meltage);
 			}
 			for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=ridge+thickness*2,h=switchtotalheight+thickness);
 			}
 		}
+
+			for (idx = [0:domeLength]) {
+				rotate([-4,205-idx*55/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(t=domeText[idx],font="LiberationMono",size=10);
+			}
 	}
 }
 
