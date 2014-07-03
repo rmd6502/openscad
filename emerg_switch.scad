@@ -10,6 +10,10 @@ meltage=.25;
 ridge=6;
 chamfer_radius =.75;
 domeText="STOP";
+microSwitch=true;
+microSwitchHeight = 10;
+microSwitchWidth = 5.8;
+microSwitchLength = 12.8;
 domeLength = len(domeText);
 
 outerdiam = (sphereRadius + ridge  + meltage)*2;
@@ -50,8 +54,13 @@ module dome() {
 			translate([-sphereRadius,-sphereRadius,0]) cube([2*sphereRadius,2*sphereRadius,sphereRadius]);
 		}
 		difference() {
-			translate([0,0,-sphereRadius+thickness/2]) cylinder(d=switchbuttondiameter+thickness+meltage,h=sphereRadius+thickness*2-meltage*2);
+			translate([0,0,-sphereRadius+thickness/2]) cylinder(d=switchbuttondiameter+thickness*2+meltage,h=sphereRadius+thickness*2-meltage*2);
 			translate([0,0,thickness*2-switchtravel-meltage/2]) cylinder(d=switchbuttondiameter+meltage,h=switchtravel+meltage);
+			if (microSwitch) {
+				render(2) translate([0,0,-microSwitchHeight]) {
+					rotate_extrude() polygon(points=[[.5,0],[switchbuttondiameter+thickness*2+meltage,3],[switchbuttondiameter+thickness*2+meltage,0]]);
+				}
+			}
 		}
 	
 		difference() {
@@ -82,20 +91,40 @@ module switch() {
 }
 
 module bottom() {
-	render(2) difference() {
-		cylinder(d=outerdiam, h=thickness*2);
+	difference() {
+		union() {
+			cylinder(d=outerdiam, h=thickness*2);
+			if (microSwitch) {
+				translate([-thickness,-microSwitchLength/2,0]) {
+					translate([-microSwitchWidth/2 - meltage - thickness,microSwitchLength/2-3,thickness*2]) cube([thickness*2,microSwitchLength,microSwitchHeight]);
+					translate([microSwitchWidth/2 + meltage + thickness,microSwitchLength/2-3,thickness*2]) cube([thickness*2,microSwitchLength,microSwitchHeight]);
+				}
+			}
+		}
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=4,h=switchtotalheight);
 		}
-		#rotate([0,0,90])translate([0,0,thickness]) switch();
-		translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
-		translate([-innerdiam/2+18,innerdiam/2-18,thickness]) linear_extrude(thickness) text($fn=40, t="© 2014 Robert ◊",size=4,font="LiberationSans");
-		translate([-innerdiam/2+15,innerdiam/2-25,thickness]) linear_extrude(thickness) text($fn=40, t="All Rights Reserved",size=4,font="LiberationSans");
+		if (microSwitch) {
+			translate([0,-1.32-meltage/2,0]) cylinder(r=.6+meltage,h=thickness*2);
+			translate([0,3.76-meltage/2,0]) cylinder(r=.6+meltage,h=thickness*2);
+			translate([0,8.84-meltage/2,0]) cylinder(r=.6+meltage,h=thickness*2);
+			translate([-microSwitchWidth/2 - meltage - thickness*2,.15,1.5+thickness*2]) rotate([0,90,0]) cylinder(r=1+meltage,h=thickness*2);
+			translate([microSwitchWidth/2 + meltage,.15,1.5+thickness*2]) rotate([0,90,0]) cylinder(r=1+meltage,h=thickness*2);
+			translate([-microSwitchWidth/2 - meltage - thickness*2,6.65,1.5+thickness*2]) rotate([0,90,0]) cylinder(r=1+meltage,h=thickness*2);
+			translate([microSwitchWidth/2 + meltage,6.65,1.5+thickness*2]) rotate([0,90,0]) cylinder(r=1+meltage,h=thickness*2);
+		} else {
+			#rotate([0,0,90])translate([0,0,thickness]) switch();
+			translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
+		}
+		
+		translate([-innerdiam/2+18,innerdiam/2-15,thickness]) linear_extrude(thickness) text($fn=40, t="© 2014 Robert ◊",size=4,font="LiberationSans");
+		translate([-innerdiam/2+15,innerdiam/2-22,thickness]) linear_extrude(thickness) text($fn=40, t="All Rights Reserved",size=4,font="LiberationSans");
 	}
 }
 
 //base();
-/* translate([0,0,thickness*5]) */dome();
-//translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
-	//bottom();
+ translate([0,0,thickness*5]) dome();
+translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
+	bottom();
 //switch();
+				
