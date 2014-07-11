@@ -123,8 +123,8 @@ module bottom() {
 				}
 			}
 			// Other side of spring guides
-			translate([sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.8 + switchtotalheight,r=1-meltage);
-			translate([-sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.8 + switchtotalheight,r=1-meltage);
+			translate([sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.6 + switchtotalheight,r=1-meltage);
+			translate([-sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.6 + switchtotalheight,r=1-meltage);
 		}
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=4,h=switchtotalheight);
@@ -151,8 +151,8 @@ module bottom() {
 }
 
 //base();
-translate([0,0,thickness*5]) dome();
-translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
+/*translate([0,0,thickness*5]) dome(); */
+//translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
 	bottom();
 //switch();
 				
