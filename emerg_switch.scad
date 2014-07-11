@@ -57,7 +57,7 @@ module dome() {
 			translate([0,0,-sphereRadius+thickness/2]) cylinder(d=switchbuttondiameter+thickness*2+meltage,h=sphereRadius+thickness*2-meltage*2);
 			translate([0,0,thickness*2-switchtravel-meltage/2]) cylinder(d=switchbuttondiameter+meltage,h=switchtravel+meltage);
 			if (microSwitch) {
-				render(2) translate([0,0,-microSwitchHeight]) {
+				render(2) translate([0,0,-microSwitchHeight/2]) {
 					rotate_extrude() polygon(points=[[.5,0],[switchbuttondiameter+thickness*2+meltage,3],[switchbuttondiameter+thickness*2+meltage,0]]);
 				}
 			}
@@ -73,9 +73,12 @@ module dome() {
 			}
 		}
 
-			for (idx = [0:domeLength]) {
-				rotate([-4,205-idx*55/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(t=domeText[idx],font="LiberationMono",size=10);
-			}
+		for (idx = [0:domeLength]) {
+			rotate([-4,205-idx*55/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(t=domeText[idx],font="LiberationMono",size=10);
+		}
+
+		translate([sphereRadius/2,0,-.866*(sphereRadius-thickness)]) cylinder(h=15,d=2);
+		translate([-sphereRadius/2,0,-.866*(sphereRadius-thickness)]) cylinder(h=15,d=2);
 	}
 }
 
@@ -102,6 +105,8 @@ module bottom() {
 					}
 				}
 			}
+			translate([sphereRadius/2,0,thickness*2]) cylinder(h=15,d=2);
+			translate([-sphereRadius/2,0,thickness*2]) cylinder(h=15,d=2);
 		}
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=4,h=switchtotalheight);
@@ -128,8 +133,8 @@ module bottom() {
 }
 
 //base();
-//translate([0,0,thickness*5]) dome();
-//translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
-	bottom();
+/*translate([0,0,thickness*5]) */dome();
+//stranslate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
+	//bottom();
 //switch();
 				
