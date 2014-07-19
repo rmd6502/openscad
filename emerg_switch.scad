@@ -112,6 +112,7 @@ module bottom() {
 			translate([microSwitchWidth/2 + meltage,.15,1.5+thickness*2]) rotate([0,90,0]) cylinder(r=1+meltage,h=thickness*2);
 			translate([-microSwitchWidth/2 - meltage - thickness*2,6.65,1.5+thickness*2]) rotate([0,90,0]) cylinder(r=1+meltage,h=thickness*2);
 			translate([microSwitchWidth/2 + meltage,6.65,1.5+thickness*2]) rotate([0,90,0]) cylinder(r=1+meltage,h=thickness*2);
+			translate([0,microSwitchLength,-thickness*1.5]) rotate([90,0,0]) cylinder(h=innerdiam/2+microSwitchLength+thickness,d=microSwitchWidth);
 		} else {
 			#rotate([0,0,90])translate([0,0,thickness]) switch();
 			translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
@@ -122,8 +123,8 @@ module bottom() {
 	}
 }
 
-//base();
- translate([0,0,thickness*5]) dome();
+*base();
+ *translate([0,0,thickness*5]) dome();
 translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
 	bottom();
 //switch();
