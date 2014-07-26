@@ -124,9 +124,9 @@ module bottom() {
 			}
 			// Other side of spring guides
 			translate([sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.5 + switchtotalheight,r=1.25-meltage,$fn=6);
-			translate([sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[2,0],[0,3]]);
+			translate([sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[3,0],[0,5]]);
 			translate([-sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.5 + switchtotalheight,r=1.25-meltage,$fn=6);
-			translate([-sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[2,0],[0,3]]);
+			translate([-sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[3,0],[0,5]]);
 		}
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=4,h=switchtotalheight);
