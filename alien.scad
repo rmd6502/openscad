@@ -16,7 +16,7 @@ union() {
 				translate([0,0,1]) cylinder(d=23,h=8);
 			}
 			translate([0,0,7.5])rotate_extrude() {
-				translate([12.5,0]) difference() {
+				translate([12.3,0]) difference() {
 					square(1.5);
 					translate([1.5,0]) circle(1.5);
 				}
