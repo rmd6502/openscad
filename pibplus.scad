@@ -4,14 +4,14 @@ $fn=30;
 
 union() {
 	difference() {
-		translate([0,3.4,0]) cube([89,60.6,24]);
-		translate([2,5.4,2]) cube([85,56.6,23]);
-		#translate([3,3,2]) extpi();
+		translate([0,3.4,0]) cube([90,62,24]);
+		translate([2,5.4,2]) cube([87,59,23]);
+		#translate([4.5,4.5,2]) extpi();
 	}
-	translate([6.5,9,2]) standoff();
-	translate([6.5,58,2]) standoff();
-	translate([64.5,9,2]) standoff();
-	translate([64.5,58,2]) standoff();
+	translate([8,10.5,2]) standoff();
+	translate([8,59.5,2]) standoff();
+	translate([66,10.5,2]) standoff();
+	translate([66,59.5,2]) standoff();
 }
 
 module extpi()
@@ -19,11 +19,11 @@ module extpi()
 	union() {
 		import("Raspberry_Pi_Model_B+_3D_Assy_STL_Binary.STL");
 		// usb
-		translate([6.5,-9.7,3]) cube([8.3,13,3]);
+		translate([5.7,-9.7,2]) cube([10,15,5]);
 		// HDMI
-		translate([24,-10,3]) cube([15.9,13,6.7]);
+		translate([21.5,-10,2]) cube([19.9,13,8.7]);
 		// Audio/Composite
-		translate([53.5,3,6.2]) rotate([90,0,0]) cylinder(d=6.5,h=13);
+		translate([53.5,3,6.2]) rotate([90,0,0]) cylinder(d=8.5,h=13);
 		// ethernet
 		translate([84,4.5,3]) cube([15,16.5,14]);
 		// usb 1,2
