@@ -4,8 +4,8 @@ $fn=30;
 
 union() {
 	difference() {
-		translate([0,3.4,0]) cube([90,62,24]);
-		translate([2,5.4,2]) cube([87,59,23]);
+		translate([0,3.4,0]) cube([92,62,24]);
+		translate([2,5.4,2]) cube([89,59,23]);
 		#translate([4.5,4.5,2]) extpi();
 	}
 	translate([8,10.5,2]) standoff();
@@ -30,6 +30,8 @@ module extpi()
 		translate([84,24,3.3]) cube([15,15,16]);
 		// usb 3,4
 		translate([84,42,3.3]) cube([15,15,16]);
+		// microsd
+		translate([-12,23,0]) cube([15,15,3]);
 	}
 }
 
@@ -38,8 +40,8 @@ module standoff()
 	difference() {
 		union() {
 			cylinder(d=4.5,h=2);
-			cylinder(d=2.5,h=3.2);
+			cylinder(d=2.5,h=4.2);
 		}
-		cylinder(d=1,h=3.5);
+		cylinder(d=1,h=4.5);
 	}
 }
