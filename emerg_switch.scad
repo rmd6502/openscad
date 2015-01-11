@@ -9,7 +9,7 @@ switchlenwid=5.99;
 meltage=.25;
 ridge=6;
 chamfer_radius =.75;
-domeText="STOP";
+domeText="Deploy";
 microSwitch=true;
 microSwitchHeight = 10;
 microSwitchWidth = 5.8;
@@ -74,7 +74,7 @@ module dome() {
 		}
 
 		for (idx = [0:domeLength]) {
-			rotate([-4,205-idx*55/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(t=domeText[idx],font="LiberationMono",size=10);
+			rotate([-4,215-idx*75/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(text=domeText[idx],font="LiberationMono",size=10);
 		}
 
 		// spring guides
@@ -153,8 +153,8 @@ module bottom() {
 }
 
 //base();
-/*translate([0,0,thickness*5]) dome(); */
+translate([0,0,thickness*5]) dome();
 //translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
-	bottom();
+//	bottom();
 //switch();
 				
