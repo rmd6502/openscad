@@ -74,7 +74,7 @@ module dome() {
 		}
 
 		for (idx = [0:domeLength]) {
-			rotate([-4,205-idx*90/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(text=domeText[idx],font="LiberationSerif",size=10,spacing=0.75);
+			rotate([-4,215-idx*75/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(text=domeText[idx],font="LiberationMono",size=10);
 		}
 
 		// spring guides
@@ -147,14 +147,14 @@ module bottom() {
 			translate([-switchlenwid/2 -meltage,-innerdiam/2+switchlenwid/2-thickness,thickness]) cube([switchlenwid+meltage*2,innerdiam/2-switchlenwid-meltage*2,1]);
 		}
 		
-		translate([-innerdiam/2+18,innerdiam/2-15,thickness]) linear_extrude(thickness) text($fn=40, text="© 2014 Robert ◊",size=4,font="LiberationSans");
-		translate([-innerdiam/2+15,innerdiam/2-22,thickness]) linear_extrude(thickness) text($fn=40, text="All Rights Reserved",size=4,font="LiberationSans");
+		translate([-innerdiam/2+18,innerdiam/2-15,thickness]) linear_extrude(thickness) text($fn=40, t="© 2014 Robert ◊",size=4,font="LiberationSans");
+		translate([-innerdiam/2+15,innerdiam/2-22,thickness]) linear_extrude(thickness) text($fn=40, t="All Rights Reserved",size=4,font="LiberationSans");
 	}
 }
 
 //base();
 translate([0,0,thickness*5]) dome();
 //translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
-	//bottom();
+//	bottom();
 //switch();
 				
