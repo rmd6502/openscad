@@ -1,3 +1,5 @@
+// Copyright © 2015 Robert M. Diamond.  All Rights Reserved.
+
 actualheight = 158.07;
 actualwidth = 77.79;
 actualdepth = 7.10;
@@ -28,25 +30,25 @@ module phone(height=actualheight,width=actualwidth,depth=actualdepth,keepouts=tr
 		// controls
 		if (controls) color("blue") {
                     // ringer switch
-                    translate([-control_depth+extra,height-18.71-5.61-extra,-extra*2]) minkowski() {
+                    translate([-control_depth+extra,height-18.71-5.61-extra*2,-extra*2]) minkowski() {
                         rotate([0,-90,0]) cone(angle=120,surfaceDiameter=.1);
                         cube([control_depth,5.61+extra*2,4.53-2.57+extra*2]);
                     }
                     
                     // volume up
-                    translate([-control_depth+extra,height-35.48-5.10-extra,-extra*2]) minkowski() {
+                    translate([-control_depth+extra,height-35.48-5.10-extra*2,-extra*2]) minkowski() {
                         rotate([0,-90,0]) cone(angle=120,surfaceDiameter=.1);
                         cube([control_depth,10.2+extra*2,4.53-2.57+extra*2]);
                     }
                     
                     // volume down
-                    translate([-control_depth+extra,height-48.09-5.10-extra,-extra*2]) minkowski() {
+                    translate([-control_depth+extra,height-48.09-5.10-extra*2,-extra*2]) minkowski() {
                         rotate([0,-90,0]) cone(angle=120,surfaceDiameter=.1);
                         cube([control_depth,10.2+extra*2,4.53-2.57+extra*2]);
                     }
                     
                     // sleep/wake button
-                    translate([width+extra,height-35.48-5.10-extra,-extra*2]) minkowski() {
+                    translate([width+extra,height-35.48-5.10-extra*2,-extra*2]) minkowski() {
                         rotate([0,90,0]) cone(angle=120,surfaceDiameter=.1);
                         cube([control_depth,10.2+extra*2,4.53-2.57+extra*2]);
                     }
@@ -66,9 +68,9 @@ module phone(height=actualheight,width=actualwidth,depth=actualdepth,keepouts=tr
 			translate([38.9,9.76,depth/2]) cone(angle=100,surfaceDiameter=7.3);
 			
 			// screen
-			translate([4.71,18.63,depth/2]) minkowski() {
-                            cone(angle=60,surfaceDiameter=.2);
-                            cube([68.36,121.54,14]);
+			translate([4.71,18.63-extra*2,depth/2]) minkowski() {
+                            cone(angle=60,surfaceDiameter=extra);
+                            cube([68.36,121.54+extra*4,14]);
                         }
                     
 			// front camera
@@ -124,7 +126,7 @@ module case() {
             translate([-4,-4,0]) phone(height=actualheight+8,width=actualwidth+8,depth=actualdepth+12,keepouts=false,controls=false);
         }
     //    translate([-1.5,-1.5,-1.5+extra]) phone(keepouts=false,controls=false,width=actualwidth+3,depth=actualdepth+3,height=actualheight+3);
-        translate([0,0,extra]) phone(depth=actualdepth+.25,keepouts=true,control_depth=9);
+        translate([0,0,extra]) phone(depth=actualdepth+.25,width=actualwidth+.25,height=actualheight+.25,keepouts=true,control_depth=9);
     }
 }
 
