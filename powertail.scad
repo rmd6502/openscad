@@ -69,14 +69,18 @@ module bottom() {
         difference() {
             cube([caseWidth, caseLength, caseHeight]);
             translate([thickness, thickness, thickness]) cube([caseWidth-thickness*2, caseLength - thickness*2, caseHeight]);
-            translate([26, thickness+.1, thickness+height+3]) rotate([90,0,0]) union() {
+            
+            // slots for cables
+            translate([26, thickness+.1, thickness*2+height+offsets]) rotate([90,0,0]) union() {
                 cylinder(d=cableThickness, h=thickness+.2);
                 translate([-cableThickness/2, 0, 0]) cube([cableThickness, caseHeight, thickness+.2]);
             }
-            translate([13, thickness+.1, thickness+height+3]) rotate([90,0,0]) union() {
+            translate([13, thickness+.1, thickness*2+height+offsets]) rotate([90,0,0]) union() {
                 cylinder(d=cableThickness, h=thickness+.2);
                 translate([-cableThickness/2, 0, 0]) cube([cableThickness, caseHeight, thickness+.2]);
             }
+            
+            // The board
             #translate([(caseWidth-width)/2, (caseLength - length)/2, thickness+offsets]) board();
     
         }
@@ -119,17 +123,17 @@ module top() {
                 translate([0,0,caseHeight/2]) cylinder(d=3.5,h=caseHeight-thickness);
             }
         }
-        translate([13.5, thickness*1.5, height+thickness+2]) rotate([90,0,0]) difference() {
-            translate([-cableThickness/2, 0, 0]) cube([cableThickness-1, caseHeight-cableThickness+thickness+1, thickness*2]);
+        translate([13.5, thickness*1.5, height+thickness+offsets]) rotate([90,0,0]) difference() {
+            translate([-cableThickness/2, 0, 0]) cube([cableThickness-1, caseHeight-cableThickness+thickness*2+1-offsets, thickness*2]);
             translate([-.5,0,0]) cylinder(d=cableThickness, h=thickness*2);
         }
-        translate([26.5, thickness*1.5, height+thickness+2]) rotate([90,0,0]) difference() {
-            translate([-cableThickness/2, 0, 0]) cube([cableThickness-1, caseHeight-cableThickness+thickness+1, thickness*2]);
+        translate([26.5, thickness*1.5, height+thickness+offsets]) rotate([90,0,0]) difference() {
+            translate([-cableThickness/2, 0, 0]) cube([cableThickness-1, caseHeight-cableThickness+thickness*2+1-offsets, thickness*2]);
             translate([-.5,0,0]) cylinder(d=cableThickness, h=thickness*2);
         }
     }
 }
 
 
-bottom();
-//translate([-4,0,caseHeight+4]) rotate([0,180,0]) top();
+//bottom();
+/*translate([-4,0,caseHeight+4]) rotate([0,180,0]) */top();
