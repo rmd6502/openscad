@@ -56,14 +56,14 @@ module bottom() {
         // flanges
         translate([-flangeWidth, 0,0]) difference() {
             cube([flangeWidth, caseLength, thickness]);
-            translate([screwDiameter,caseLength/4,-.1]) screwHole();
-            translate([screwDiameter,3*caseLength/4,-.1]) screwHole();
+            translate([screwDiameter*1.5,caseLength/4,-.1]) screwHole();
+            translate([screwDiameter*1.5,3*caseLength/4,-.1]) screwHole();
         }
         translate([0,0,thickness]) rotate([0,-90,0])  linear_extrude(thickness,scale=[0,1]) square([thickness, caseLength]);
         translate([caseWidth, 0,0]) difference() {
             cube([flangeWidth, caseLength, thickness]);
-            translate([flangeWidth-screwDiameter,caseLength/4,-.1]) screwHole();
-            translate([flangeWidth-screwDiameter,3*caseLength/4,-.1]) screwHole();
+            translate([flangeWidth-screwDiameter*1.5,caseLength/4,-.1]) screwHole();
+            translate([flangeWidth-screwDiameter*1.5,3*caseLength/4,-.1]) screwHole();
         }
         translate([caseWidth,0,thickness]) rotate([0,0,0])  linear_extrude(thickness,scale=[0,1]) square([thickness, caseLength]);
         difference() {
