@@ -1,4 +1,26 @@
-$fn=60;
+/* [Global] */
+
+// Bottom is the main box, top is the cover
+part = "fit";  // [bottom:The main box,top:The cover,both:Both box and cover next to each other,fit:Both box and cover as they fit together]
+
+/* [Box Parameters] */
+
+caseWidth = 45;
+caseLength = 64;
+caseHeight = 27;
+
+thickness = 1.5;
+
+// The height of the standoffs for the board
+offsets = 5;
+
+// The thickness of the power wires
+cableThickness = 6.7;
+
+// The width of the mounting flanges
+flangeWidth = 15;
+
+/* [Board Parameters] */
 
 width = 38;
 length = 51;
@@ -17,16 +39,8 @@ screwDiameter = 3;
 cornerRadius = 3;
 cornerHeight = 0.1;
 
-caseWidth = 45;
-caseLength = 64;
-caseHeight = 27;
-
-thickness = 1.5;
-offsets = 5;
-
-cableThickness = 6.7;
-
-flangeWidth = 15;
+/* [Hidden] */
+$fn = 60;
 
 module board() {
     union() {
@@ -135,5 +149,13 @@ module top() {
 }
 
 
-bottom();
-///*translate([-4,0,caseHeight+4]) rotate([0,180,0]) */top();
+if (part == "bottom" || part == "both" || part == "fit") {
+    bottom();
+}
+if (part == "both") {
+    translate([-caseWidth-10,0,0]) top();
+} else if (part == "fit") {
+    translate([-4,0,caseHeight+4]) rotate([0,180,0]) top();
+} else if (part == "top") {
+    top();
+}
