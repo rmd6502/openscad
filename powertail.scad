@@ -71,11 +71,11 @@ module bottom() {
             translate([thickness, thickness, thickness]) cube([caseWidth-thickness*2, caseLength - thickness*2, caseHeight]);
             
             // slots for cables
-            translate([26, thickness+.1, thickness*2+height+offsets]) rotate([90,0,0]) union() {
+            translate([26, thickness+.1, thickness*2+height+offsets+cableThickness/2]) rotate([90,0,0]) union() {
                 cylinder(d=cableThickness, h=thickness+.2);
                 translate([-cableThickness/2, 0, 0]) cube([cableThickness, caseHeight, thickness+.2]);
             }
-            translate([13, thickness+.1, thickness*2+height+offsets]) rotate([90,0,0]) union() {
+            translate([13, thickness+.1, thickness*2+height+offsets+cableThickness/2]) rotate([90,0,0]) union() {
                 cylinder(d=cableThickness, h=thickness+.2);
                 translate([-cableThickness/2, 0, 0]) cube([cableThickness, caseHeight, thickness+.2]);
             }
@@ -135,5 +135,5 @@ module top() {
 }
 
 
-//bottom();
-/*translate([-4,0,caseHeight+4]) rotate([0,180,0]) */top();
+bottom();
+///*translate([-4,0,caseHeight+4]) rotate([0,180,0]) */top();
