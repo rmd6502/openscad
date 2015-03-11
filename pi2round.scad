@@ -50,6 +50,10 @@ module bottom() {
                 }
                 // add flat panel for usb and ether
                 translate([87-2.5,56/2-chord/2+1.5,-2.5]) cube([2.5,chord-3,height]);
+                
+                translate([85/2+diam*.7071/2-6.5,56/2+diam*.7071/2-6.5,-1.5]) screw_hole(height-1);
+            translate([85/2+diam*.7071/2-6.5,56/2-diam*.7071/2+6.5,-1.5]) screw_hole(height-1);
+            translate([85/2-diam/2+6.5,56/2,-1.5]) screw_hole(height-1);
             }
             
             // The pi itself
@@ -100,5 +104,5 @@ module screw_hole(h=5)
     }
 }
 
-//bottom();
-/*translate([0,diam/2-.4,height+2]) rotate([180,0,0]) */ top();
+bottom();
+*translate([0,diam/2-.4,height+2]) rotate([180,0,0])  top();
