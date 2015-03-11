@@ -77,11 +77,14 @@ module top()
             
             // cutoff for usb and ether
             translate([87,56/2-chord/2,-2.7]) cube([25,chord,lidheight+.4]);
+            translate([85/2+diam*.7071/2-6.5,56/2+diam*.7071/2-6.5,-2.5]) cylinder(d=3.5,h=lidheight+.2);
+            translate([85/2+diam*.7071/2-6.5,56/2-diam*.7071/2+6.5,-2.5]) cylinder(d=3.5,h=lidheight+.2);
+            translate([85/2-diam/2+6.5,56/2,-2.5]) cylinder(d=3.5,h=lidheight+.2);
         }
         translate([0,0,lidheight]) difference() {
             // base
             translate([85/2,56/2,-2.5]) cylinder(d=diam-4.5,h=lidheight-1);
-            translate([85/2,56/2,-2.5]) cylinder(d=diam-6.5,h=lidheight-.9);
+            translate([85/2,56/2,-2.7]) cylinder(d=diam-6.5,h=lidheight-.7);
             
             // cutoff for usb and ether
             translate([84.5,56/2-chord/2,-2.7]) cube([25,chord,lidheight-.6]);
