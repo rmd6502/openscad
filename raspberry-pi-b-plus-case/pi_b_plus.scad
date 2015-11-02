@@ -1,7 +1,7 @@
 // What to Draw
 drawBoard=0;
 drawBoardCentered=1;
-drawMicroSDCutOut=0;
+drawMicroSDCutOut=1;
 drawCaseBottom=0;
 drawCaseBottomCentered=0;
 drawCaseTop=0;
@@ -74,9 +74,9 @@ baseWidth=boardWidth;
 baseLength=boardLength;
 baseHeight=mountRiserHeight+boardThickness+miniusbHeight;
 baseThickness=3;
-microSDCutoutWidth=10;
-microSDCutoutLength=10;
-microSDCutoutHeight=20;
+microSDCutoutWidth=15;
+microSDCutoutLength=20;
+microSDCutoutHeight=5;
 
 // Case top
 topWidth=baseWidth;
@@ -174,6 +174,12 @@ module pi_board(cutOutExtrude=0,extraspace=2) {
 	// CPU
 	translate([cpuXset, cpuYset, boardThickness])
 		cube([cpuWidth, cpuLength, cpuHeight]);
+	}
+    
+    // microsd
+    translate([(baseWidth/2)-(microSDCutoutWidth/2), baseLength-5, -2]) minkowski() {
+		cube([microSDCutoutWidth, cutOutExtrude, microSDCutoutHeight]);
+        sphere(d=extraspace);
 	}
 	
 }
