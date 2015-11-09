@@ -57,7 +57,7 @@ module bottom() {
             }
             
             // The pi itself
-            #translate([82.5,0,4.55]) rotate([0,0,90]) pi_board(cutOutExtrude,7.5);
+            translate([82.5,0,4.55]) rotate([0,0,90]) pi_board(cutOutExtrude,7.5);
             
             translate([16,-12,-2.6]) cylinder(d=3,h=4);
             translate([16,65,-2.6]) cylinder(d=3,h=4);
@@ -85,6 +85,7 @@ module top()
             translate([85/2+diam*.7071/2-6.5,56/2-diam*.7071/2+6.5,-2.55]) cylinder(d=3.5,h=lidheight+.2);
             translate([85/2-diam/2+7.5,56/2-18,-2.55]) cylinder(d=3.5,h=lidheight+.2);
             // cover art
+            #rotate([0,0,180]) translate([-95,5,-lidheight+.4]) linear_extrude(1.2) resize([50,50]) import("Like-Thumb-clipped.dxf");
         }
         translate([0,0,lidheight]) difference() {
             // base
@@ -107,5 +108,5 @@ module screw_hole(h=5)
     }
 }
 
-bottom();
+//bottom();
 translate([0,diam/2-.4,height+2]) rotate([180,0,0]) top();
