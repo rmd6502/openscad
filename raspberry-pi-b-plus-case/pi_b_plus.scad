@@ -144,7 +144,7 @@ module pi_board(cutOutExtrude=0,extraspace=2) {
 	}
 
 	// AV Plug
-	translate([avOverHang-cutOutExtrude,avYset-extraspace/2,boardThickness-min(extraspace/2, boardThickness/2)]) {
+	translate([avOverHang-cutOutExtrude,avYset,boardThickness-min(extraspace/2, boardThickness/2)]) {
 		rotate(a=[0,0,avRotate]) minkowski() {
 			cube([avWidth, avLength+cutOutExtrude, avHeight]);
             sphere(d=extraspace);
@@ -153,14 +153,14 @@ module pi_board(cutOutExtrude=0,extraspace=2) {
 
 	color("Silver") {
 	// HDMI Plug
-	translate([hdmiOverHang-cutOutExtrude,hdmiYset-extraspace/2,boardThickness-min(extraspace/2, boardThickness/2)]) minkowski() {
+	translate([hdmiOverHang-cutOutExtrude,hdmiYset,boardThickness-min(extraspace/2, boardThickness/2)]) minkowski() {
         
 		cube([hdmiWidth+cutOutExtrude, hdmiLength, hdmiHeight]);
         sphere(d=extraspace);
 	}
 
 	// mini USB
-	translate([miniusbOverHang-cutOutExtrude,miniusbYset-extraspace/2,boardThickness-min(extraspace/2, boardThickness/2)]) minkowski() {
+	translate([miniusbOverHang-cutOutExtrude,miniusbYset,boardThickness-min(extraspace/2, boardThickness/2)]) minkowski() {
 		cube([miniusbWidth+cutOutExtrude, miniusbLength, miniusbHeight]);
         sphere(d=extraspace);
 	}
@@ -375,3 +375,5 @@ if(drawCaseTop) {
 				}
 	}
 }
+
+//pi_board();
