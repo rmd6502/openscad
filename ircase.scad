@@ -29,7 +29,7 @@ module bottom() {
             cylinder(d=5,h=4);
             cylinder(d=2.8,h=4.1);
         }
-        translate([-1.75,0,5]) cube([board_width, board_length, board_height]);
+        //translate([-1.75,0,5]) cube([board_width, board_length, board_height]);
         
         // screwhole for top
         translate([-4,30,0.9]) difference() {
@@ -74,6 +74,6 @@ module led() {
     }
 }
 
-bottom();
+//bottom();
 
-//top();
+rotate([0,180,0]) top();
