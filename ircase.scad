@@ -20,7 +20,7 @@ module bottom() {
             }
         }
         // mount board to case
-        translate([17.55,2.6,1]) difference() {
+        #translate([17.55,2.6,1]) difference() {
             cylinder(d=5,h=4);
             cylinder(d=2.8,h=4.1);
         }
@@ -50,7 +50,7 @@ module top() {
             translate([25.05,5.3,12]) led();
             translate([25.05,12.8,12]) led();
             // Design for the top - deliberately not included
-            rotate([0,0,90]) translate ([15.6,53,14.6]) linear_extrude(0.8) resize([35,0,0],auto=true) import("zenith_1937.dxf");
+            rotate([0,0,90]) translate ([15.6,53,14.6]) linear_extrude(0.8) resize([35,0,0],auto=true) import("./zenith_1937.dxf");
             translate([-4,30,13.9]) cylinder(h=1.5,d=2.7);
             translate([33,30,13.9]) cylinder(h=1.5,d=2.7);
         }
@@ -74,6 +74,6 @@ module led() {
     }
 }
 
-//bottom();
+bottom();
 
-rotate([0,180,0]) top();
+/*rotate([0,180,0]) top() */;
