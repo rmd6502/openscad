@@ -109,4 +109,4 @@ module screw_hole(h=5)
 }
 
 bottom();
-translate([0,diam/2-.4,height+2]) rotate([180,0,0]) top();
+/*translate([0,diam/2-.4,height+2]) rotate([180,0,0]) top();*/
