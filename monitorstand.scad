@@ -1,24 +1,26 @@
 // Thickness of the bars
 thickness=4;
 // Length of the bars
-length=190;
+length=100;
 // Height of the bars
-height=20;
+height=40;
 // Crossing angle of the bars
-angle=60;
+angle=40;
 // Tilt angle of the monitor
 tiltangle=30;
 // Thickness of the monitor
-monitorthickness=15.875;
+monitorthickness=7.9;
 // Distance from the end of the bar to the crossing point
-crossingPointDistance = 25;
+crossingPointDistance = 20;
 // Sitting position from the monitor to the front of the bars
-sittingPosition=20;
+sittingPosition=10;
+// Height of the lowest point of the monitor
+sittingHeight=25;
 // What to print
-part = "both"; //[lbar:Left Bar Only, rbar:Right Bar Only,both:Both left and right bars]
+part = "rbar"; //[lbar:Left Bar Only, rbar:Right Bar Only,both:Both left and right bars]
 
 module foo() {}
-$fn=40;
+$fn=60;
 inch=25.4;
 barangle=angle/2;
 separation=2*sin(barangle)*(length-crossingPointDistance);
@@ -38,7 +40,7 @@ difference() {
             }
         }
     }
-    #translate([-40,sittingPosition,1.5+monitorthickness*sin(tiltangle)]) rotate([-tiltangle,0,0]) cube([separation+80, monitorthickness+1, height*3]);
+    #translate([-40,sittingPosition,sittingHeight+monitorthickness*sin(tiltangle)]) rotate([-tiltangle,0,0]) cube([separation+80, monitorthickness+1, height*3]);
 }
 
 module bar() {
