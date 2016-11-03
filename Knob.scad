@@ -23,13 +23,13 @@ module torus(outerRadius, innerRadius)
   rotate_extrude() translate([innerRadius+r,0,0]) circle(r);
   }
 //=======================================================================================  
-ridges=73; //prime :)
-module ridge(outerRadius, innerRadius)
+
+module ridge(outerRadius=18, ridges=113)
   {
   for(i=[1:ridges])
     {
     rotate((i)*(360/ridges),Z)
-      translate([17.9,0,8])
+      translate([outerRadius-0.2,0,8])
         rotate(-90,Z)
           linear_extrude(height = 10)
             polygon(points=[[-0.5,0],[0,1],[0.5,0]], paths=[[0,1,2]]);
@@ -37,7 +37,7 @@ module ridge(outerRadius, innerRadius)
   }
 //=======================================================================================  
 //38 nominal outside
-module knob()
+module knob(diameter=36)
   {
   union() {
   	difference()
@@ -45,13 +45,13 @@ module knob()
     	union()
 	      {
 	      //main body 
-	      translate([0,0,1]) cylinder(r=36/2,h=18);
+	      translate([0,0,1]) cylinder(r=diameter/2,h=18);
 	      //step down
 	      translate([0,0,1+18-0.1])
-	        cylinder(r=36/2-2,h=2.1);
+	        cylinder(r=diameter/2-2,h=2.1);
 	        //smoothiness
 	      translate([0,0,1+18-0.0])
-	        torus(outerRadius=36/2,innerRadius=36/2-4);
+	        torus(outerRadius=diameter/2,innerRadius=diameter/2-4);
 	      }
 	    //Remove for body of switch
 //	    cylinder(r1=34/2,r2=25/2,h=12.25);
@@ -65,13 +65,13 @@ module knob()
 	      //translate([4.5-6/2,-4,13])cube([4,8,8]);
 	      //}
 	    //Remove fingercup
-	    translate([9,0,1+18+3])
+	    translate([diameter/2-13,0,1+18+3])
 	      scale([1,1,0.75])
 	        sphere(r=7);
 	    }
 	  render() translate([0,0,12.25-shaftLength]) difference() {
 		//shaft
-		cylinder(r=6, h=shaftLength);
+		cylinder(r=4.25, h=shaftLength);
 		difference() {
 			cylinder(r=3.25,h=18);
 			translate([4.75-6/2,-4,2-shaftLength])cube([4,8,8+shaftLength]);
@@ -111,7 +111,7 @@ module encoder()
 	rotate([180,0,0])
 	union() {
       //color([0,0.3,0,0.8]) encoder();
-      color([0.9,0,0,0.6]) knob();
-      ridge();
+      color([0.6,0,0.6,0.8]) knob(64);
+      ridge(32);
 	}
 //=======================================================================================

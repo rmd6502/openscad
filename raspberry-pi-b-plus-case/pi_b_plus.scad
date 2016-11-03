@@ -133,9 +133,9 @@ module pi_board(cutOutExtrude=0,extraspace=2) {
 	
 	color("Silver") {
 	// USB
-	translate([usb1XIndent,usbOverHang-cutOutExtrude,boardThickness])
+	translate([usb1XIndent,usbOverHang-cutOutExtrude,boardThickness+1])
 		cube([usbWidth, usbLength+cutOutExtrude, usbHeight]);
-	translate([usb2XIndent,usbOverHang-cutOutExtrude,boardThickness])
+	translate([usb2XIndent,usbOverHang-cutOutExtrude,boardThickness+1])
 		cube([usbWidth, usbLength+cutOutExtrude, usbHeight]);
 
 	// Network port
@@ -376,4 +376,4 @@ if(drawCaseTop) {
 	}
 }
 
-//pi_board();
+pi_board();
