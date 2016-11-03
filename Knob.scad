@@ -10,7 +10,7 @@ $fs=0.25;
 //coarse
 //$fs=1;
 
-shaftLength = 20;
+shaftLength = 5;
 
 //rotate axes
 X=[1,0,0];
@@ -54,7 +54,8 @@ module knob()
 	        torus(outerRadius=36/2,innerRadius=36/2-4);
 	      }
 	    //Remove for body of switch
-	    cylinder(r1=34/2,r2=25/2,h=12.25);
+//	    cylinder(r1=34/2,r2=25/2,h=12.25);
+        cylinder(r=34/2,h=12.25);
 	    //Remove hole for shaft
 	    //difference()
 	      //{
@@ -73,11 +74,19 @@ module knob()
 		cylinder(r=6, h=shaftLength);
 		difference() {
 			cylinder(r=3.25,h=18);
-			translate([4.75-6/2,-4,20-shaftLength])cube([4,8,8+shaftLength]);
+			translate([4.75-6/2,-4,2-shaftLength])cube([4,8,8+shaftLength]);
 		}
 		// slot for magnet
 		//cube([2,8,10],center=true);
 	  }
+      translate([0,10,6]) difference() {
+          cylinder(h=8,d=2.75);
+          translate([0,0,-.1]) cylinder(h=5.1,d=1.75);
+      }
+      translate([0,-10,6]) difference() {
+          cylinder(h=8,d=2.75);
+          translate([0,0,-.1]) cylinder(h=5.1,d=1.75);
+      }
 	}
   }
 //=======================================================================================  
