@@ -9,7 +9,7 @@ switchlenwid=5.99;
 meltage=.25;
 ridge=6;
 chamfer_radius =.75;
-domeText="Esc";
+domeText="I'm Okay";
 microSwitch=true;
 microSwitchHeight = 10;
 microSwitchWidth = 5.8;
@@ -41,7 +41,7 @@ module base() {
 		
 		render(2) for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness]) cylinder(d=5.5,h=switchtotalheight+thickness);
-			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness*2]) cylinder(d=4,h=switchtotalheight);
+			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,thickness*2]) cylinder(d=2.5,h=switchtotalheight);
 		}
 	}
 }
@@ -74,7 +74,7 @@ module dome() {
 		}
 
 		for (idx = [0:domeLength]) {
-			rotate([-4,202-idx*45/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(text=domeText[idx],font="LiberationMono",size=10);
+			rotate([-4,224-idx*85/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(text=domeText[idx],font="LiberationMono",size=10);
 		}
 
 		// spring guides
@@ -83,12 +83,12 @@ module dome() {
 		difference() {
 			union() {
 				difference() {
-					translate([sphereRadius/2,0,-.866*(sphereRadius)]) cylinder(h=sphereRadius*.866+thickness*2,r=2);
-					translate([sphereRadius/2,0,-.866*(sphereRadius-thickness*5)]) cylinder(h=sphereRadius*.866-thickness*2,r=1+meltage);
+					translate([sphereRadius/2,0,-.866*(sphereRadius)]) cylinder(h=sphereRadius*.866+thickness*2,r=3);
+					translate([sphereRadius/2,0,-.866*(sphereRadius-thickness*5)]) cylinder(h=sphereRadius*.866-thickness*2,r=2+meltage);
 				}
 				difference() {
-					translate([-sphereRadius/2,0,-.866*(sphereRadius)]) cylinder(h=sphereRadius*.866+thickness*2,r=2);
-					translate([-sphereRadius/2,0,-.866*(sphereRadius-thickness*5)]) cylinder(h=sphereRadius*.866-thickness*2,r=1+meltage);
+					translate([-sphereRadius/2,0,-.866*(sphereRadius)]) cylinder(h=sphereRadius*.866+thickness*2,r=3);
+					translate([-sphereRadius/2,0,-.866*(sphereRadius-thickness*5)]) cylinder(h=sphereRadius*.866-thickness*2,r=2+meltage);
 				}
 			}
 			difference() {
@@ -123,10 +123,10 @@ module bottom() {
 				}
 			}
 			// Other side of spring guides
-			translate([sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.5 + switchtotalheight,r=1.25-meltage,$fn=6);
-			translate([sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[2,0],[0,3]]);
-			translate([-sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.5 + switchtotalheight,r=1.25-meltage,$fn=6);
-			translate([-sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[2,0],[0,3]]);
+			translate([sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.5,r=1.75-meltage);
+			translate([sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[3,0],[0,3]]);
+			translate([-sphereRadius/2,0,thickness*2]) cylinder(h=sphereRadius*.5,r=1.75-meltage);
+			translate([-sphereRadius/2,0,thickness*2]) rotate_extrude() polygon(points=[[0,0],[3,0],[0,3]]);
 		}
 		for (angle=[0:120:359]) difference() {
 			rotate(angle) translate([(innerdiam-ridge)/2+thickness,0,0]) cylinder(d=4,h=switchtotalheight);
@@ -153,8 +153,8 @@ module bottom() {
 }
 
 //base();
-//translate([0,0,thickness*5]) dome();
+translate([0,0,thickness*5]) dome();
 //translate([0,0,switchtotalheight+thickness*5]) rotate([180,0,0])  
-	bottom();
+	//bottom();
 //switch();
 				
