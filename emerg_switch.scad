@@ -74,7 +74,7 @@ module dome() {
 		}
 
 		for (idx = [0:domeLength]) {
-			rotate([-4,224-idx*85/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(text=domeText[idx],font="LiberationMono",size=10);
+			rotate([-4,222-idx*85/domeLength,0]) translate([0,0,sphereRadius-thickness/2]) rotate([-5,7,180]) linear_extrude(thickness*2+meltage) text(text=domeText[idx],font="Bitstream Vera Sans Mono:style=Roman",size=10);
 		}
 
 		// spring guides

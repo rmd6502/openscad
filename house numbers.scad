@@ -28,9 +28,9 @@ module countersunk(h=4.75) {
 //linear_extrude(4) outline(4.25) text(text="7",font="Megadeth:style=Cryptic", size=152);
 difference() {
     union() {
-        color([.7,.7,.7,1]) linear_extrude(.5) outline(4.5) offset(r=-.25) 
-        text(text="7",font="Megadeth:style=Cryptic", size=152);
-        color([.2,.2,.2,1]) linear_extrude(4.75) offset(r=-.25) text(text="7",font="Megadeth:style=Cryptic", size=152);
+        color([.7,.7,.7,1]) linear_extrude(.5) outline(4.5) offset(r=-.25)
+        text(text="The Diamonds",font="My Underwood:style=Regular", size=50);
+        color([.2,.2,.2,1]) linear_extrude(4.75) offset(r=-.25) text(text="The Diamonds",font="My Underwood:style=Regular", size=50);
     }
     translate([60,115,0]) countersunk();
     translate([30,10,0]) countersunk();
